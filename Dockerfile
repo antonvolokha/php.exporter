@@ -7,4 +7,7 @@ RUN apt update -y && apt install -y --no-install-recommends \
     && docker-php-ext-enable redis \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY index.php /var/www/html/
+WORKDIR /var/www/html
+COPY index.php /var/www/html
+
+RUN composer install --no-suggest --prefer-dist --optimize-autoloader
