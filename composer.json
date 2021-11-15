@@ -1,0 +1,6 @@
+{
+    "require": {
+        "php": ">=8.0",
+        "promphp/prometheus_client_php": "^2.4"
+    }
+}

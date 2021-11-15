@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+    exporter:
+        build:
+            context: .
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - 8000:80
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "5m"
+
