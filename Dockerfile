@@ -8,6 +8,6 @@ RUN apt update -y && apt install -y --no-install-recommends \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
-COPY index.php /var/www/html
+COPY . /var/www/html/
 
 RUN composer install --no-suggest --prefer-dist --optimize-autoloader
