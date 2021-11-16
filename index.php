@@ -18,15 +18,12 @@ Redis::setDefaultOptions(
     ]
 );
 
-$registry = CollectorRegistry::getDefault();
-
-$renderer = new RenderTextFormat();
-$result = $renderer->render($registry->getMetricFamilySamples());
-
 try {
-    (new Redis())->wipeStorage();
-} catch (StorageException $e) {
-}
+    header('Content-type: ' . RenderTextFormat::MIME_TYPE);
 
-header('Content-type: ' . RenderTextFormat::MIME_TYPE);
-echo $result;
+    echo (new RenderTextFormat())->render(CollectorRegistry::getDefault()->getMetricFamilySamples());
+
+    (new Redis())->wipeStorage();
+} catch (StorageException) {
+    header('Content-type: ' . RenderTextFormat::MIME_TYPE, true, 500);
+}
