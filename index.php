@@ -22,8 +22,6 @@ try {
     header('Content-type: ' . RenderTextFormat::MIME_TYPE);
 
     echo (new RenderTextFormat())->render(CollectorRegistry::getDefault()->getMetricFamilySamples());
-
-    (new Redis())->wipeStorage();
 } catch (StorageException) {
     header('Content-type: ' . RenderTextFormat::MIME_TYPE, true, 500);
 }
